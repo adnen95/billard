@@ -83,31 +83,7 @@
   </body> 
 </html>  
 
- <?php 
-$app_id = '160340340691501';
-$app_secret = "a9ff02125ce92050c8530442ef4cca16";
-$my_url = "https://apps.facebook.com/bazzoocam";
 
-$code = isset($_REQUEST["code"] ) ? $_REQUEST["code"] : false;
-
-
-if(!$code) {
-    $dialog_url = "https://www.facebook.com/v2.0/dialog/oauth?client_id=" . $app_id . "&scope=&redirect_uri=" . urlencode($my_url);
-    echo("<script> top.location.href='" . $dialog_url . "'</script>");
-}
-
-$token_url = "https://graph.facebook.com/v2.0/oauth/access_token?client_id="
-    . $app_id . "&redirect_uri=" . urlencode($my_url) . "&client_secret="
-    . $app_secret . "&code=" . $code;
-
-$access_token = file_get_contents($token_url);
-
-$graph_url = "https://graph.facebook.com/v2.0/me?" . $access_token;
-
-$user = json_decode(file_get_contents($graph_url));
-
-echo("Hello " . $user->name);
- ?>
  
  
 <body>
